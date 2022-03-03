@@ -1,0 +1,204 @@
+{
+  "interface": {
+    "startSet": [
+      "title",
+      "buttonOption2"
+    ],
+    "setNameSet": [
+      "question",
+      "setName",
+      "buttonOption3",
+      "character"
+    ],
+    "fullSet": [
+      "question",
+      "buttonOption1",
+      "buttonOption2",
+      "buttonOption3",
+      "character"
+    ],
+    "middleSet": [
+      "question",
+      "buttonOption2",
+      "buttonOption3"
+    ],
+    "oneSelection": [
+      "question",
+      "buttonOption2"
+    ]
+  },
+  "0": {
+    "background": "start",
+    "interfaceType": "startSet",
+    "title": "Моя визуальная новелла",
+    "buttonsColor": "dark",
+    "buttonOption2": {
+      "text": "Начать",
+      "id": "1"
+    }
+  },
+  "1": {
+    "background": "start",
+    "interfaceType": "setNameSet",
+    "character": "kirill",
+    "question": "Привет! Меня зовут Кирюша. А тебя?",
+    "buttonsColor": "dark",
+    "buttonOption3": {
+      "text": "Подтвердить",
+      "id": "2"
+    }
+  },
+  "2": {
+    "background": "start",
+    "interfaceType": "fullSet",
+    "character": "kirill",
+    "question": "Отлично, %s! Чем займёся?",
+    "buttonsColor": "light",
+    "buttonOption1": {
+      "text": "Пойдём на пробежу",
+      "id": "3"
+    },
+    "buttonOption2": {
+      "text": "Пойдём в поход",
+      "id": "4"
+    },
+    "buttonOption3": {
+      "text": "Погуляем по полю",
+      "id": "5"
+    }
+  },
+  "3": {
+    "background": "jog",
+    "interfaceType": "middleSet",
+    "question": "Может, пойдём домой?..",
+    "buttonsColor": "light",
+    "buttonOption2": {
+      "text": "Да, и посмотрим фильм",
+      "id": "6"
+    },
+    "buttonOption3": {
+      "text": "Да, и отпразднуем Хэллоуин",
+      "id": "7"
+    }
+  },
+  "4": {
+    "background": "hike",
+    "interfaceType": "middleSet",
+    "question": "Как уютно… Но уже темнеет.",
+    "buttonsColor": "light",
+    "buttonOption2": {
+      "text": "Пойдём домой и посмотрим фильм",
+      "id": "6"
+    },
+    "buttonOption3": {
+      "text": "Пойдём домой и отпразднуем Хэллоуин",
+      "id": "7"
+    }
+  },
+  "5": {
+    "background": "field",
+    "interfaceType": "middleSet",
+    "question": "Может, пойдём домой?..",
+    "buttonsColor": "light",
+    "buttonOption2": {
+      "text": "Может, посмотрим фильм?",
+      "id": "6"
+    },
+    "buttonOption3": {
+      "text": "Да, отпразднуем Хэллоуин",
+      "id": "7"
+    }
+  },
+  "6": {
+    "background": "movie",
+    "interfaceType": "middleSet",
+    "question": "Как тебе фильм?",
+    "buttonsColor": "light",
+    "buttonOption2": {
+      "text": "Мне понравился!",
+      "id": "8"
+    },
+    "buttonOption3": {
+      "text": "Не очень…",
+      "id": "9"
+    }
+  },
+  "7": {
+    "background": "halloween",
+    "interfaceType": "middleSet",
+    "question": "Получается очень красиво!",
+    "buttonsColor": "light",
+    "buttonOption2": {
+      "text": "Да! Может, посмотрим фильм?",
+      "id": "6"
+    },
+    "buttonOption3": {
+      "text": "Да! Давай сделаем костюмы!",
+      "id": "10"
+    }
+  },
+  "8": {
+    "background": "movie",
+    "interfaceType": "oneSelection",
+    "question": "Отлично! А теперь пора спать…",
+    "buttonsColor": "light",
+    "buttonOption2": {
+      "text": "Да, уже поздно…",
+      "id": "13"
+    }
+  },
+  "9": {
+    "background": "movie",
+    "interfaceType": "oneSelection",
+    "question": "Жаль… Тогда пойдём спать?",
+    "buttonsColor": "light",
+    "buttonOption2": {
+      "text": "Да, уже поздно…",
+      "id": "13"
+    }
+  },
+  "10": {
+    "background": "costumes",
+    "interfaceType": "middleSet",
+    "question": "Мне нравистя твой костюм.",
+    "buttonsColor": "light",
+    "buttonOption2": {
+      "text": "Твой тоже очень красивый!",
+      "id": "11"
+    },
+    "buttonOption3": {
+      "text": "А мне, если честно, не нравится твой…",
+      "id": "12"
+    }
+  },
+  "11": {
+    "background": "costumes",
+    "interfaceType": "oneSelection",
+    "question": "Спасибо! Ну, пойдём спать?",
+    "buttonsColor": "light",
+    "buttonOption2": {
+      "text": "Да, уже поздно…",
+      "id": "13"
+    }
+  },
+  "12": {
+    "background": "costumes",
+    "interfaceType": "oneSelection",
+    "question": "Ничего, я не в обиде. Пойдём спать?",
+    "buttonsColor": "light",
+    "buttonOption2": {
+      "text": "Да, уже поздно…",
+      "id": "13"
+    }
+  },
+  "13": {
+    "background": "start",
+    "interfaceType": "startSet",
+    "title": "Спасибо, что поиграли!",
+    "buttonsColor": "dark",
+    "buttonOption2": {
+      "text": "Пройти ещё раз",
+      "id": "0"
+    }
+  }
+}
