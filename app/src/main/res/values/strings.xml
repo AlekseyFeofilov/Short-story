@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Short Story</string>
+    <string name="setName">Введите своё имя…</string>
 </resources>
