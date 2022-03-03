@@ -52,10 +52,10 @@
     "background": "start",
     "interfaceType": "fullSet",
     "character": "kirill",
-    "question": "Отлично, %s! Чем займёся?",
+    "question": "Отлично, %s! Чем займёмся?",
     "buttonsColor": "light",
     "buttonOption1": {
-      "text": "Пойдём на пробежу",
+      "text": "Пойдём на пробежку",
       "id": "3"
     },
     "buttonOption2": {
@@ -160,7 +160,7 @@
   "10": {
     "background": "costumes",
     "interfaceType": "middleSet",
-    "question": "Мне нравистя твой костюм.",
+    "question": "Мне нравится твой костюм.",
     "buttonsColor": "light",
     "buttonOption2": {
       "text": "Твой тоже очень красивый!",

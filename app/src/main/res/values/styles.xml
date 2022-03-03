@@ -42,6 +42,7 @@
         <item name="android:layout_height">0dp</item>
         <item name="android:inputType">text</item>
         <item name="android:maxLines">1</item>
+        <item name="android:maxLength">35</item>
         <item name="android:paddingStart">16dp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
