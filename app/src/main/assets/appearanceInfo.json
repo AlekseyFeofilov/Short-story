@@ -34,7 +34,7 @@
     "buttonsColor": "dark",
     "buttonOption2": {
       "text": "Начать",
-      "id": "1"
+      "id": 1
     }
   },
   "1": {
@@ -45,7 +45,7 @@
     "buttonsColor": "dark",
     "buttonOption3": {
       "text": "Подтвердить",
-      "id": "2"
+      "id": 2
     }
   },
   "2": {
@@ -56,15 +56,15 @@
     "buttonsColor": "light",
     "buttonOption1": {
       "text": "Пойдём на пробежку",
-      "id": "3"
+      "id": 3
     },
     "buttonOption2": {
       "text": "Пойдём в поход",
-      "id": "4"
+      "id": 4
     },
     "buttonOption3": {
       "text": "Погуляем по полю",
-      "id": "5"
+      "id": 5
     }
   },
   "3": {
@@ -74,11 +74,11 @@
     "buttonsColor": "light",
     "buttonOption2": {
       "text": "Да, и посмотрим фильм",
-      "id": "6"
+      "id": 6
     },
     "buttonOption3": {
       "text": "Да, и отпразднуем Хэллоуин",
-      "id": "7"
+      "id": 7
     }
   },
   "4": {
@@ -88,11 +88,11 @@
     "buttonsColor": "light",
     "buttonOption2": {
       "text": "Пойдём домой и посмотрим фильм",
-      "id": "6"
+      "id": 6
     },
     "buttonOption3": {
       "text": "Пойдём домой и отпразднуем Хэллоуин",
-      "id": "7"
+      "id": 7
     }
   },
   "5": {
@@ -102,11 +102,11 @@
     "buttonsColor": "light",
     "buttonOption2": {
       "text": "Может, посмотрим фильм?",
-      "id": "6"
+      "id": 6
     },
     "buttonOption3": {
       "text": "Да, отпразднуем Хэллоуин",
-      "id": "7"
+      "id": 7
     }
   },
   "6": {
@@ -116,11 +116,11 @@
     "buttonsColor": "light",
     "buttonOption2": {
       "text": "Мне понравился!",
-      "id": "8"
+      "id": 8
     },
     "buttonOption3": {
       "text": "Не очень…",
-      "id": "9"
+      "id": 9
     }
   },
   "7": {
@@ -130,11 +130,11 @@
     "buttonsColor": "light",
     "buttonOption2": {
       "text": "Да! Может, посмотрим фильм?",
-      "id": "6"
+      "id": 6
     },
     "buttonOption3": {
       "text": "Да! Давай сделаем костюмы!",
-      "id": "10"
+      "id": 10
     }
   },
   "8": {
@@ -144,7 +144,7 @@
     "buttonsColor": "light",
     "buttonOption2": {
       "text": "Да, уже поздно…",
-      "id": "13"
+      "id": 13
     }
   },
   "9": {
@@ -154,7 +154,7 @@
     "buttonsColor": "light",
     "buttonOption2": {
       "text": "Да, уже поздно…",
-      "id": "13"
+      "id": 13
     }
   },
   "10": {
@@ -164,11 +164,11 @@
     "buttonsColor": "light",
     "buttonOption2": {
       "text": "Твой тоже очень красивый!",
-      "id": "11"
+      "id": 11
     },
     "buttonOption3": {
       "text": "А мне, если честно, не нравится твой…",
-      "id": "12"
+      "id": 12
     }
   },
   "11": {
@@ -178,7 +178,7 @@
     "buttonsColor": "light",
     "buttonOption2": {
       "text": "Да, уже поздно…",
-      "id": "13"
+      "id": 13
     }
   },
   "12": {
@@ -188,7 +188,7 @@
     "buttonsColor": "light",
     "buttonOption2": {
       "text": "Да, уже поздно…",
-      "id": "13"
+      "id": 13
     }
   },
   "13": {
@@ -198,7 +198,7 @@
     "buttonsColor": "dark",
     "buttonOption2": {
       "text": "Пройти ещё раз",
-      "id": "0"
+      "id": 0
     }
   }
 }

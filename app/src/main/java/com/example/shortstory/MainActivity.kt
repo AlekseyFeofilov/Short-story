@@ -3,24 +3,29 @@ package com.example.shortstory
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import org.json.JSONObject
-import java.io.IOException
 import com.example.shortstory.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    internal companion object {
+    private companion object {
         const val ACTIVITY_ID = "activityId"
         const val NAME = "name"
+        const val DARK = "dark"
+        const val LIGHT = "light"
+        const val SET_NAME = "setName"
+        const val DRAWABLE = "drawable"
     }
 
     private var name: String? = null
@@ -33,54 +38,66 @@ class MainActivity : AppCompatActivity() {
         val activityId = intent.getIntExtra(ACTIVITY_ID, 0)
         name = intent.getStringExtra(NAME)
 
-        val json = JSONObject(loadJSONFromAsset()!!)
-        val activity = json.getJSONObject(activityId.toString())
-        interfaceInit(json, activity)
+        val json = JSONObject(loadJSONFromAsset(assets)!!)
+        val activity = ActivityStructure(json, activityId)
+        interfaceInit(activity)
     }
 
-    private fun interfaceInit(json: JSONObject, activity: JSONObject) {
-        binding.background.background = getDrawableResource(activity, "background")
-        val interfaceType = activity.getString("interfaceType")
-        val components = json.getJSONObject("interface").getJSONArray(interfaceType)
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
+    private fun interfaceInit(activity: ActivityStructure) {
+        binding.backgroundImageView.background = getDrawableResource(activity.background)
         val intent = Intent(this, MainActivity::class.java)
 
-        for (i in 0 until components.length()) {
-            when (val component = components[i].toString()) {
-                "title" -> setTextView(binding.titleTextView, activity, component)
-                "question" -> setTextView(binding.questionTextView, activity, component)
-                "setName" -> setSetNameEditText(intent)
-                "character" -> setCharacter(activity)
+        for (i in 0 until activity.components.length()) {
+            when (val component = activity.components[i].toString()) {
+                ActivityStructure.TITLE -> setTextView(binding.titleTextView, activity.title!!)
+                ActivityStructure.QUESTION -> setTextView(binding.questionTextView, activity.question!!)
+                SET_NAME -> setSetNameEditText(intent)
+                ActivityStructure.CHARACTER -> setCharacter(activity.character!!)
                 else -> {
-                    val view = activity.getJSONObject(component)
-                    val color = activity.getString("buttonsColor");
                     when (component) {
-                        "buttonOption1" -> setButtonOption(binding.buttonOption1, view, color, intent)
-                        "buttonOption2" -> setButtonOption(binding.buttonOption2, view, color, intent)
-                        else -> setButtonOption(binding.buttonOption3, view, color, intent)
+                        ActivityStructure.BUTTON_OPTION1 -> {
+                            setButtonOption(binding.buttonOption1, activity.buttonOption1!!, intent)
+                        }
+                        ActivityStructure.BUTTON_OPTION2 -> {
+                            setButtonOption(binding.buttonOption2, activity.buttonOption2!!, intent)
+                        }
+                        else -> setButtonOption(binding.buttonOption3, activity.buttonOption3!!, intent)
                     }
                 }
             }
         }
     }
 
-    private fun setButtonOption(button: Button, buttonInformation: JSONObject, buttonColor: String, intent: Intent){
-        when(buttonColor){
-            "dark" -> button.setBackgroundColor(ContextCompat.getColor(this, R.color.dark))
-            "light" -> button.setBackgroundColor(ContextCompat.getColor(this, R.color.light))
+    private fun setButtonOption(button: Button, buttonInfo: ButtonStructure, intent: Intent){
+        when(buttonInfo.color){
+            DARK -> button.setBackgroundColor(ContextCompat.getColor(this, R.color.dark))
+            LIGHT -> button.setBackgroundColor(ContextCompat.getColor(this, R.color.light))
         }
 
         button.setOnClickListener {
-            intent.putExtra(MainActivity.ACTIVITY_ID, buttonInformation.getInt("id"))
-            startActivity(intent)
+            button.startAnimation(AnimationUtils.loadAnimation(this, R.anim.hide))
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                intent.putExtra(MainActivity.ACTIVITY_ID, buttonInfo.id)
+                startActivity(intent)
+            }, 1000)
+
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
-        button.text = buttonInformation.getString("text")
+        button.text = buttonInfo.text
         button.visibility = View.VISIBLE
     }
 
-    private fun setTextView(textView: TextView, activity: JSONObject, textViewName: String) {
-        textView.text = if (name == null) activity.getString(textViewName)
-        else activity.getString(textViewName).format(name)
+    private fun setTextView(textView: TextView, text: String) {
+        textView.text = if (name == null) text
+        else text.format(name)
+
         textView.visibility = View.VISIBLE
     }
 
@@ -94,31 +111,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setCharacter(activity: JSONObject) {
-        binding.character.background = getDrawableResource(activity,"character")
+    private fun setCharacter(drawable: String) {
+        binding.character.background = getDrawableResource(drawable)
     }
 
-    private fun getDrawableResource(json: JSONObject, key: String): Drawable? {
-        val drawable = json.getString(key)
-        val resourceId = resources.getIdentifier(drawable, "drawable", this.packageName)
+    private fun getDrawableResource(drawable: String): Drawable? {
+        val resourceId = resources.getIdentifier(drawable, DRAWABLE, this.packageName)
         return ResourcesCompat.getDrawable(resources, resourceId, null)
-    }
-
-    private fun loadJSONFromAsset(): String? {
-        var json: String? = null
-
-        json = try {
-            val appearanceInfoByJSON = assets.open("appearanceInfo.json")
-            val size: Int = appearanceInfoByJSON.available()
-            val buffer = ByteArray(size)
-            appearanceInfoByJSON.read(buffer)
-            appearanceInfoByJSON.close()
-            String(buffer, Charsets.UTF_8)
-        } catch (ex: IOException) {
-            ex.printStackTrace()
-            return null
-        }
-
-        return json
     }
 }

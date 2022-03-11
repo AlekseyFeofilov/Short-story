@@ -7,23 +7,24 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/background"
+        android:id="@+id/backgroundImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
     <ImageView
         android:id="@+id/character"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="200:600"
+        android:scaleType="fitCenter"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/titleTextView"
         style="@style/TextFrame.TextView.Large"
         app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline45"
-        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline30" />
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline25" />
 
     <TextView
         android:id="@+id/questionTextView"
@@ -42,7 +43,7 @@
         android:id="@+id/buttonOption1"
         style="@style/TextFrame.Button"
         app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline75"
-        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline65" />
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline65"        />
 
     <Button
         android:id="@+id/buttonOption2"
@@ -87,8 +88,8 @@
         app:layout_constraintGuide_percent="0.45" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontalGuideline30"
+        android:id="@+id/horizontalGuideline25"
         style="@style/horizontalGuideline"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
