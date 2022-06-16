@@ -3,8 +3,6 @@ package com.example.shortstory
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Button
@@ -13,19 +11,25 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
-import org.json.JSONObject
+import androidx.lifecycle.lifecycleScope
+import com.example.shortstory.activityStructure.ActivityStructure
+import com.example.shortstory.activityStructure.ButtonColor
+import com.example.shortstory.activityStructure.ButtonStructure
+import com.example.shortstory.activityStructure.Interface
 import com.example.shortstory.databinding.ActivityMainBinding
+import com.google.gson.Gson
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.json.JSONObject
 
-class MainActivity : AppCompatActivity() {
+internal class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private companion object {
-        const val ACTIVITY_ID = "activityId"
-        const val NAME = "name"
-        const val DARK = "dark"
-        const val LIGHT = "light"
-        const val SET_NAME = "setName"
-        const val DRAWABLE = "drawable"
+    internal enum class StringResources(val string: String) {
+        ACTIVITY_ID("activityId"),
+        NAME("name"),
+        DRAWABLE("drawable"),
+        JSON_PATH("appearanceInfo.json"),
     }
 
     private var name: String? = null
@@ -35,11 +39,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val activityId = intent.getIntExtra(ACTIVITY_ID, 0)
-        name = intent.getStringExtra(NAME)
+        val activityId = intent.getIntExtra(StringResources.ACTIVITY_ID.string, 0)
+        name = intent.getStringExtra(StringResources.NAME.string)
 
         val json = JSONObject(loadJSONFromAsset(assets)!!)
-        val activity = ActivityStructure(json, activityId)
+        val jsonActivityStructure = json.getJSONObject(activityId.toString())
+        val activity =
+            Gson().fromJson(jsonActivityStructure.toString(), ActivityStructure::class.java)
         interfaceInit(activity)
     }
 
@@ -49,43 +55,73 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun interfaceInit(activity: ActivityStructure) {
-        binding.backgroundImageView.background = getDrawableResource(activity.background)
+        binding.backgroundImageView.background = getDrawableResource(activity.backgroundName)
         val intent = Intent(this, MainActivity::class.java)
 
-        for (i in 0 until activity.components.length()) {
-            when (val component = activity.components[i].toString()) {
-                ActivityStructure.TITLE -> setTextView(binding.titleTextView, activity.title!!)
-                ActivityStructure.QUESTION -> setTextView(binding.questionTextView, activity.question!!)
-                SET_NAME -> setSetNameEditText(intent)
-                ActivityStructure.CHARACTER -> setCharacter(activity.character!!)
+        for (component in activity._interface) {
+            when (component) {
+                Interface.TITLE -> setTextView(binding.titleTextView, activity.title!!)
+                Interface.QUESTION -> setTextView(
+                    binding.questionTextView,
+                    activity.question!!
+                )
+                Interface.SET_NAME -> setSetNameEditText(intent)
+                Interface.CHARACTER -> setCharacter(activity.character!!)
                 else -> {
                     when (component) {
-                        ActivityStructure.BUTTON_OPTION1 -> {
-                            setButtonOption(binding.buttonOption1, activity.buttonOption1!!, intent)
+                        Interface.BUTTON_OPTION1 -> {
+                            setButtonOption(
+                                binding.buttonOption1,
+                                activity.buttonOption1!!,
+                                activity.buttonsColor,
+                                intent
+                            )
                         }
-                        ActivityStructure.BUTTON_OPTION2 -> {
-                            setButtonOption(binding.buttonOption2, activity.buttonOption2!!, intent)
+                        Interface.BUTTON_OPTION2 -> {
+                            setButtonOption(
+                                binding.buttonOption2,
+                                activity.buttonOption2!!,
+                                activity.buttonsColor,
+                                intent
+                            )
                         }
-                        else -> setButtonOption(binding.buttonOption3, activity.buttonOption3!!, intent)
+                        else -> setButtonOption(
+                            binding.buttonOption3,
+                            activity.buttonOption3!!,
+                            activity.buttonsColor,
+                            intent
+                        )
                     }
                 }
             }
         }
     }
 
-    private fun setButtonOption(button: Button, buttonInfo: ButtonStructure, intent: Intent){
-        when(buttonInfo.color){
-            DARK -> button.setBackgroundColor(ContextCompat.getColor(this, R.color.dark))
-            LIGHT -> button.setBackgroundColor(ContextCompat.getColor(this, R.color.light))
-        }
+    private fun setButtonOption(
+        button: Button,
+        buttonInfo: ButtonStructure,
+        color: ButtonColor,
+        intent: Intent
+    ) {
+        button.setBackgroundColor(
+            ContextCompat.getColor(
+                this, if (color == ButtonColor.DARK) R.color.dark else R.color.light
+            )
+        )
 
         button.setOnClickListener {
-            button.startAnimation(AnimationUtils.loadAnimation(this, R.anim.hide))
+            lifecycleScope.launch {
+                button.startAnimation(AnimationUtils.loadAnimation(this@MainActivity, R.anim.hide))
+                button.visibility = View.INVISIBLE
+                delay(1000)
+                button.visibility = View.VISIBLE
+            }
 
-            Handler(Looper.getMainLooper()).postDelayed({
-                intent.putExtra(MainActivity.ACTIVITY_ID, buttonInfo.id)
+            lifecycleScope.launch{
+                delay(300)
+                intent.putExtra(StringResources.ACTIVITY_ID.string, buttonInfo.id)
                 startActivity(intent)
-            }, 1000)
+            }
 
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
@@ -95,9 +131,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setTextView(textView: TextView, text: String) {
-        textView.text = if (name == null) text
-        else text.format(name)
-
+        textView.text = if (name == null) text else text.format(name)
         textView.visibility = View.VISIBLE
     }
 
@@ -106,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         binding.setNameEditText.visibility = View.VISIBLE
 
         binding.setNameEditText.doAfterTextChanged {
-            intent.putExtra(MainActivity.NAME, it.toString())
+            intent.putExtra(StringResources.NAME.string, it.toString())
             binding.buttonOption3.isEnabled = true
         }
     }
@@ -116,7 +150,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getDrawableResource(drawable: String): Drawable? {
-        val resourceId = resources.getIdentifier(drawable, DRAWABLE, this.packageName)
+        val resourceId =
+            resources.getIdentifier(drawable, StringResources.DRAWABLE.string, this.packageName)
         return ResourcesCompat.getDrawable(resources, resourceId, null)
     }
 }

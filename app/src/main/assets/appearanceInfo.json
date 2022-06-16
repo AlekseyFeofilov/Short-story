@@ -1,35 +1,10 @@
 {
-  "interface": {
-    "startSet": [
+  "0": {
+    "backgroundName": "start",
+    "interface": [
       "title",
       "buttonOption2"
     ],
-    "setNameSet": [
-      "question",
-      "setName",
-      "buttonOption3",
-      "character"
-    ],
-    "fullSet": [
-      "question",
-      "buttonOption1",
-      "buttonOption2",
-      "buttonOption3",
-      "character"
-    ],
-    "middleSet": [
-      "question",
-      "buttonOption2",
-      "buttonOption3"
-    ],
-    "oneSelection": [
-      "question",
-      "buttonOption2"
-    ]
-  },
-  "0": {
-    "background": "start",
-    "interfaceType": "startSet",
     "title": "Моя визуальная новелла",
     "buttonsColor": "dark",
     "buttonOption2": {
@@ -38,8 +13,13 @@
     }
   },
   "1": {
-    "background": "start",
-    "interfaceType": "setNameSet",
+    "backgroundName": "start",
+    "interface": [
+      "question",
+      "setName",
+      "buttonOption3",
+      "character"
+    ],
     "character": "kirill",
     "question": "Привет! Меня зовут Кирюша. А тебя?",
     "buttonsColor": "dark",
@@ -49,8 +29,14 @@
     }
   },
   "2": {
-    "background": "start",
-    "interfaceType": "fullSet",
+    "backgroundName": "start",
+    "interface": [
+      "question",
+      "buttonOption1",
+      "buttonOption2",
+      "buttonOption3",
+      "character"
+    ],
     "character": "kirill",
     "question": "Отлично, %s! Чем займёмся?",
     "buttonsColor": "light",
@@ -68,8 +54,12 @@
     }
   },
   "3": {
-    "background": "jog",
-    "interfaceType": "middleSet",
+    "backgroundName": "jog",
+    "interface": [
+      "question",
+      "buttonOption2",
+      "buttonOption3"
+    ],
     "question": "Может, пойдём домой?..",
     "buttonsColor": "light",
     "buttonOption2": {
@@ -82,8 +72,12 @@
     }
   },
   "4": {
-    "background": "hike",
-    "interfaceType": "middleSet",
+    "backgroundName": "hike",
+    "interface": [
+      "question",
+      "buttonOption2",
+      "buttonOption3"
+    ],
     "question": "Как уютно… Но уже темнеет.",
     "buttonsColor": "light",
     "buttonOption2": {
@@ -96,8 +90,12 @@
     }
   },
   "5": {
-    "background": "field",
-    "interfaceType": "middleSet",
+    "backgroundName": "field",
+    "interface": [
+      "question",
+      "buttonOption2",
+      "buttonOption3"
+    ],
     "question": "Может, пойдём домой?..",
     "buttonsColor": "light",
     "buttonOption2": {
@@ -110,8 +108,12 @@
     }
   },
   "6": {
-    "background": "movie",
-    "interfaceType": "middleSet",
+    "backgroundName": "movie",
+    "interface": [
+      "question",
+      "buttonOption2",
+      "buttonOption3"
+    ],
     "question": "Как тебе фильм?",
     "buttonsColor": "light",
     "buttonOption2": {
@@ -124,8 +126,12 @@
     }
   },
   "7": {
-    "background": "halloween",
-    "interfaceType": "middleSet",
+    "backgroundName": "halloween",
+    "interface": [
+      "question",
+      "buttonOption2",
+      "buttonOption3"
+    ],
     "question": "Получается очень красиво!",
     "buttonsColor": "light",
     "buttonOption2": {
@@ -138,8 +144,11 @@
     }
   },
   "8": {
-    "background": "movie",
-    "interfaceType": "oneSelection",
+    "backgroundName": "movie",
+    "interface": [
+      "question",
+      "buttonOption2"
+    ],
     "question": "Отлично! А теперь пора спать…",
     "buttonsColor": "light",
     "buttonOption2": {
@@ -148,8 +157,11 @@
     }
   },
   "9": {
-    "background": "movie",
-    "interfaceType": "oneSelection",
+    "backgroundName": "movie",
+    "interface": [
+      "question",
+      "buttonOption2"
+    ],
     "question": "Жаль… Тогда пойдём спать?",
     "buttonsColor": "light",
     "buttonOption2": {
@@ -158,8 +170,12 @@
     }
   },
   "10": {
-    "background": "costumes",
-    "interfaceType": "middleSet",
+    "backgroundName": "costumes",
+    "interface": [
+      "question",
+      "buttonOption2",
+      "buttonOption3"
+    ],
     "question": "Мне нравится твой костюм.",
     "buttonsColor": "light",
     "buttonOption2": {
@@ -172,8 +188,11 @@
     }
   },
   "11": {
-    "background": "costumes",
-    "interfaceType": "oneSelection",
+    "backgroundName": "costumes",
+    "interface": [
+      "question",
+      "buttonOption2"
+    ],
     "question": "Спасибо! Ну, пойдём спать?",
     "buttonsColor": "light",
     "buttonOption2": {
@@ -182,8 +201,11 @@
     }
   },
   "12": {
-    "background": "costumes",
-    "interfaceType": "oneSelection",
+    "backgroundName": "costumes",
+    "interface": [
+      "question",
+      "buttonOption2"
+    ],
     "question": "Ничего, я не в обиде. Пойдём спать?",
     "buttonsColor": "light",
     "buttonOption2": {
@@ -192,8 +214,8 @@
     }
   },
   "13": {
-    "background": "start",
-    "interfaceType": "startSet",
+    "backgroundName": "start",
+    "interface": "startSet",
     "title": "Спасибо, что поиграли!",
     "buttonsColor": "dark",
     "buttonOption2": {

@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:ignore="MissingConstraints" >
 
     <ImageView
         android:id="@+id/backgroundImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/background" />
 
     <ImageView
         android:id="@+id/character"
@@ -18,7 +20,8 @@
         android:layout_height="match_parent"
         app:layout_constraintDimensionRatio="200:600"
         android:scaleType="fitCenter"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:contentDescription="@string/character" />
 
     <TextView
         android:id="@+id/titleTextView"
@@ -30,20 +33,21 @@
         android:id="@+id/questionTextView"
         style="@style/TextFrame.TextView"
         app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline65"
-        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline55" />
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline55"/>
 
     <EditText
         android:id="@+id/setNameEditText"
         style="@style/entryField"
         android:hint="@string/setName"
         app:layout_constraintBottom_toTopOf="@id/horizontalGuideline85"
-        app:layout_constraintTop_toTopOf="@id/horizontalGuideline75" />
+        app:layout_constraintTop_toTopOf="@id/horizontalGuideline75"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/buttonOption1"
         style="@style/TextFrame.Button"
         app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline75"
-        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline65"        />
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline65"/>
 
     <Button
         android:id="@+id/buttonOption2"

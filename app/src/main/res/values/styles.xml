@@ -5,7 +5,7 @@
         <item name="android:visibility">invisible</item>
         <item name="autoSizeMaxTextSize">55sp</item>
         <item name="autoSizeMinTextSize">10sp</item>
-        <item name="autoSizeStepGranularity">15sp</item>
+        <item name="autoSizeStepGranularity">5sp</item>
         <item name="autoSizeTextType">uniform</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
